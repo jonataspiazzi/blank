@@ -6,8 +6,8 @@ A simple project created to test artificial inteligences in a LINK 5 game.
 
 ## Executing
 
-- You'll need <a href="https://nodejs.org/en/">Node.JS</a> installed with `npm` to run this project.
-- You'll need <a href="https://git-scm.com/">git</a> installed to fast-download this project, if you didn't already.
+- You'll need [Node.JS](https://nodejs.org/en/) installed with `npm` to run this project.
+- You'll need [git](https://git-scm.com/) installed to fast-download this project, if you didn't already.
 
 To download run:
 
