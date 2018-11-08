@@ -39,17 +39,15 @@ class Board {
   }
 
   drawPieces(boardData, size) {
-    for (let x = 0; x < boardData.length; x++) {
-      const row = boardData[x];
+    for (let y = 0; y < boardData.length; y++) {
+      const row = boardData[y];
       
       if (!row || !row.length) continue; // prevent crash for empty rows.
 
-      for (let y = 0; y < row.length; y++) {
-        const piece = row[y];
+      for (let x = 0; x < row.length; x++) {
+        const piece = row[x];
 
         if (!piece) continue;
-
-        
 
         this.ctx.beginPath();
         this.ctx.arc((x + 1) * size - size / 2, (y + 1) * size - size / 2, size * .3, 0, Math.PI * 2);
