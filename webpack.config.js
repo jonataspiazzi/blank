@@ -4,6 +4,14 @@ const Dotenv = require('dotenv-webpack');
 module.exports = (env, argv) => {
   const config = {
     devtool: 'source-map',
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          pathRewrite: {'^/api' : ''}
+        }
+      }
+    },
     output: {
       filename: 'index.min.js'
     },

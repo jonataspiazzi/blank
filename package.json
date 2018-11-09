@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "webpack-dev-server --mode development --host 127.0.0.1 --colors --progress --inline --hot --open --env=dev --port 9001",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "webpack-dev-server --mode development --host 127.0.0.1 --colors --progress --inline --hot --open --env=dev --port 9001",
+    "server": "node src\\server\\restApi.js",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -15,8 +17,11 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",
     "dotenv-webpack": "^1.5.5",
+    "express": "^4.16.4",
     "html-webpack-plugin": "^3.1.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
