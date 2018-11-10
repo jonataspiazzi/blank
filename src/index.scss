@@ -92,7 +92,19 @@ body {
         padding: 6px 0;
       }
     }
-  }
 
-  
+    &.checkbox {
+      display: flex;
+      align-content: center;
+
+      label {
+        display: inline-block;
+      }
+
+      input[type=checkbox] {
+        width: initial;
+        margin: 18px 2px 0 0;
+      }
+    }
+  }
 }
