@@ -1,17 +1,25 @@
 import { silver, silverRed, silverBlue, darkGrafity } from './../index.scss';
 
 class Board {
-  constructor() {
+  constructor(width, height, squareSize) {
+    this.dataWidth = width;
+    this.dataHeight = height;
+    this.width = width * squareSize;
+    this.height = height * squareSize;
+    this.squareSize = squareSize;
+    this.currentBoardData = [];
+
     const canvas = document.getElementById('board');
-    this.width = canvas.width = 540;
-    this.height = canvas.height = 540;
+    canvas.width = this.width;
+    canvas.height = this.height;
     this.ctx = canvas.getContext('2d');
   }
 
   render(boardData) {
+    this.currentBoardData = boardData;
     this.clear();
-    this.drawGrid(30);
-    this.drawPieces(boardData, 30);
+    this.drawGrid(this.squareSize);
+    this.drawPieces(boardData, this.squareSize);
   }
 
   clear() {
@@ -72,4 +80,6 @@ class Board {
   }
 }
 
-export default Board;
+const board = new Board(18, 18, 30);
+
+export default board;

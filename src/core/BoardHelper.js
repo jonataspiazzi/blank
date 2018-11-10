@@ -55,11 +55,6 @@ class BoardHelper {
 
     return boardData;
   }
-
-  static async loadSnapshots() {
-    const result = await fetch('http://127.0.0.1:9001/api/snapshots');
-    return await result.json();
-  }
 }
 
 export default BoardHelper;

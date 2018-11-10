@@ -1,18 +1,14 @@
 global._babelPolyfill = false;
+import 'babel-polyfill';
 import './index.scss';
-import Board from './gameInterface/board';
-import BoardHelper from './core/BoardHelper';
+import board from './ui/board';
+import form from './ui/form';
 
-const onLoad = () => {
-  const board = new Board();
-  
-  BoardHelper.loadSnapshots().then(data => {
-    const boardData = BoardHelper.createBoarData(18, 18);
-
-    BoardHelper.applySnapshot(boardData, data['simple']);
-
-    board.render(boardData);
-  });
+const index = () => {
+  console.log('link5 inteligence lab was started');
+  board.render([]);
 }
 
-document.addEventListener('DOMContentLoaded', onLoad);
+document.addEventListener('DOMContentLoaded', index);
+
+export default index;

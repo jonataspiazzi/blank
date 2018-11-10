@@ -3,7 +3,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const config = {
-    entry: ['babel-polyfill', './src/index.js'],
+    //entry: ['babel-polyfill'],
     devtool: 'source-map',
     devServer: {
       proxy: {
@@ -12,9 +12,6 @@ module.exports = (env, argv) => {
           pathRewrite: {'^/api' : ''}
         }
       }
-    },
-    output: {
-      filename: 'index.min.js'
     },
     module: {
       rules: [
