@@ -63,6 +63,7 @@ body {
 
     select, input {
       padding: 6px 10px;
+      width: 100%;
     }
 
     table {
@@ -72,6 +73,27 @@ body {
 
       tr:hover {
         background-color: $dark-silver;
+      }
+    }
+
+    .sub-group {
+      &+.sub-group {
+        margin-top: 4px;
+      }
+
+      select {
+        width: 152px;
+      }
+
+      input[type=text] {
+        width: 122px;
+        padding: 6px 13px;
+      }
+
+      input[type=button] {
+        margin-left: -6px;
+        width: 50px;
+        padding: 6px 0;
       }
     }
   }

@@ -3,8 +3,8 @@ import { silver, silverRed, silverBlue, darkGrafity } from './../index.scss';
 class Board {
   constructor() {
     const canvas = document.getElementById('board');
-    this.width = canvas.width = 600;
-    this.height = canvas.height = 600;
+    this.width = canvas.width = 540;
+    this.height = canvas.height = 540;
     this.ctx = canvas.getContext('2d');
   }
 
@@ -65,8 +65,6 @@ class Board {
           this.ctx.strokeStyle = 'white';
         }
         
-        console.log('entrou', (x + 1) * size, (y + 1) * size, size * .8, 0, Math.PI * 2);
-
         this.ctx.fill();
         this.ctx.stroke();
       }

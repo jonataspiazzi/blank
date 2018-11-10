@@ -1,15 +1,18 @@
+global._babelPolyfill = false;
 import './index.scss';
 import Board from './gameInterface/board';
+import BoardHelper from './core/BoardHelper';
 
 const onLoad = () => {
   const board = new Board();
+  
+  BoardHelper.loadSnapshots().then(data => {
+    const boardData = BoardHelper.createBoarData(18, 18);
 
-  fetch('http://127.0.0.1:9001/api/snapshots')
-    .then(result => {
-      result.json().then(data => {
-        board.render(data['simple']);
-      });
-    });
+    BoardHelper.applySnapshot(boardData, data['simple']);
+
+    board.render(boardData);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

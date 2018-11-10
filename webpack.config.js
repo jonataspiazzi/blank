@@ -3,6 +3,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const config = {
+    entry: ['babel-polyfill', './src/index.js'],
     devtool: 'source-map',
     devServer: {
       proxy: {
