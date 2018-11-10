@@ -3,10 +3,13 @@ import 'babel-polyfill';
 import './index.scss';
 import board from './ui/board';
 import form from './ui/form';
+import HumanPlayer from './players/humanPlayer';
+import game from './core/game';
 
 const index = () => {
   console.log('link5 inteligence lab was started');
   board.render([]);
+  game.start();
 }
 
 document.addEventListener('DOMContentLoaded', index);
