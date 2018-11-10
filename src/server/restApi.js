@@ -21,14 +21,15 @@ app.get('/snapshots', (req, res) => {
 
 // PUT /snapshots/abc
 app.put('/snapshots/:name', (req, res) => {
-  console.log(`PUT /snapshots/${req.params.name} called`);
   var name = req.params.name;
   var body = req.body;
+  console.log(`PUT /snapshots/${name}`, body);
 
   var fileText = fs.readFileSync('src\\server\\snapshots.json');
   var allSnapshots = JSON.parse(fileText);
 
   allSnapshots[name] = body;
+
   fileText = snapStringfy(allSnapshots);
 
   fs.writeFileSync('src\\server\\snapshots.json', fileText);

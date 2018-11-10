@@ -1,6 +1,9 @@
 
 class BoardHelper {
   static cropSnapshot(boardData) {
+    if (boardData.length === 0) return;
+    if (boardData[0].length === 0) return;
+    
     let minY = boardData.length;
     let minX = boardData[0].length;
     let maxY = 0;

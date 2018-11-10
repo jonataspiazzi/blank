@@ -54,8 +54,20 @@ class Form {
     board.render(boardData);
   }
 
-  addSnapshotOnClick() {
-    console.log('addSnapshotOnClick');
+  async addSnapshotOnClick() {
+    const server = new SnapshotServer();
+
+    const name = this.newSnapshotName.value;
+    this.newSnapshotName.value = '';
+    const snapshot = BoardHelper.cropSnapshot(board.currentBoardData);
+
+    await server.save(name, snapshot);
+    await this.loadSnapshotList();
+
+    for (let i = 0; i < this.snapshotList.options.length; i++) {
+      this.snapshotList.options[i].selected = 
+        this.snapshotList.options[i].value === name;
+    }
   }
 }
 

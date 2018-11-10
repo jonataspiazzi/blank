@@ -76,11 +76,7 @@ body {
       }
     }
 
-    .sub-group {
-      &+.sub-group {
-        margin-top: 4px;
-      }
-
+    &.custom-size {
       select {
         width: 152px;
       }

@@ -13,21 +13,20 @@
       <canvas id="board"></canvas>
     </section>
     <aside class="form">
-      <div class="field-group">
-        <label>Board Preset</label>
-        <div class="sub-group">
-          <select id="snapshotList">
-            <option>loading...</option>
-          </select>
-          <input type="button" value="Apply" id="applySnapshotListButton" />
-        </div>
-        <div class="sub-group">
-          <input type="text" id="newSnapshotName" />
-          <input type="button" value="Save" id="addSnapshotButton" />
-        </div>
+      <div class="field-group custom-size">
+        <label>Load a snapshot</label>
+        <select id="snapshotList">
+          <option>loading...</option>
+        </select>
+        <input type="button" value="Apply" id="applySnapshotListButton" />
+      </div>
+      <div class="field-group custom-size">
+        <label>Save a snapshot</label>
+        <input type="text" placeholder="snapshot name" id="newSnapshotName" />
+        <input type="button" value="Save" id="addSnapshotButton" />
       </div>
       <div class="field-group">
-        <label>Red Player:</label>
+        <label>Red Player Controller:</label>
         <select>
           <option>Human Player</option>
           <option>Dummy</option>
@@ -35,7 +34,7 @@
         </select>
       </div>
       <div class="field-group">
-        <label>Blue Player:</label>
+        <label>Blue Player Controller:</label>
         <select>
           <option>Human Player</option>
           <option>Dummy</option>
