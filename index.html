@@ -13,17 +13,21 @@
       <canvas id="board"></canvas>
     </section>
     <aside class="form">
-      <div class="field-group custom-size">
+      <div class="field-group">
         <label>Load a snapshot</label>
-        <select id="snapshot">
-          <option>loading...</option>
-        </select>
-        <input type="button" value="Apply" id="applySnapshotButton" />
+        <div class="inline-group">
+          <select id="snapshot">
+            <option>loading...</option>
+          </select>
+          <input type="button" value="Apply" id="applySnapshotButton" />
+        </div>
       </div>
-      <div class="field-group custom-size">
+      <div class="field-group">
         <label>Save a snapshot</label>
-        <input type="text" placeholder="snapshot name" id="newSnapshotName" />
-        <input type="button" value="Save" id="saveSnapshotButton" />
+        <div class="inline-group">
+          <input type="text" placeholder="snapshot name" id="newSnapshotName" />
+          <input type="button" value="Save" id="saveSnapshotButton" />
+        </div>
       </div>
       <div class="field-group">
         <label>Red Player Controller:</label>

@@ -66,6 +66,10 @@ body {
       width: 100%;
     }
 
+    input[type=text] {
+      padding: 6px 13px;
+    }
+
     table {
       border-top: 1px solid $grafity;
       padding-top: 6px;
@@ -76,20 +80,16 @@ body {
       }
     }
 
-    &.custom-size {
-      select {
-        width: 152px;
-      }
+    .inline-group {
+      display: flex;
 
-      input[type=text] {
-        width: 122px;
-        padding: 6px 13px;
+      select, input {
+        flex-basis: 100%;
       }
 
       input[type=button] {
-        margin-left: -6px;
-        width: 50px;
-        padding: 6px 0;
+        flex-basis: 0%;
+        margin-left: -1px;
       }
     }
 

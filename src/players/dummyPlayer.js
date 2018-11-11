@@ -13,10 +13,11 @@ class DummyPlayer extends Player {
           if (boardData[y][x] !== 0) continue;
   
           setTimeout(() => resolve({ x, y }), 500);
+          return;
         }
       }
 
-      reject('board alread full');
+      reject('board already full');
     });
   }
 }
