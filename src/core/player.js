@@ -1,7 +1,7 @@
 
 class Player {
   constructor() {
-
+    this.name = 'player';
   }
 
   async makeAMove(boardData, piece) {

@@ -8,8 +8,8 @@ import game from './core/game';
 
 const index = () => {
   console.log('link5 inteligence lab was started');
+  form.load();
   board.render([]);
-  game.start();
 }
 
 document.addEventListener('DOMContentLoaded', index);

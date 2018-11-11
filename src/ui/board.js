@@ -1,13 +1,12 @@
 import { silver, silverRed, silverBlue, darkGrafity } from './../index.scss';
+import { gameDataWidth, gameDataHeight, squareSize } from './../core/gameConfig';
 
 class Board {
-  constructor(width, height, squareSize) {
-    this.dataWidth = width;
-    this.dataHeight = height;
-    this.width = width * squareSize;
-    this.height = height * squareSize;
+  constructor() {
+    this.width = gameDataWidth * squareSize;
+    this.height = gameDataHeight * squareSize;
     this.squareSize = squareSize;
-    this.currentBoardData = [];
+    this.boardData = [];
 
     const canvas = document.getElementById('board');
     canvas.width = this.width;
@@ -16,7 +15,7 @@ class Board {
   }
 
   render(boardData) {
-    this.currentBoardData = boardData;
+    this.boardData = boardData;
     this.clear();
     this.drawGrid(this.squareSize);
     this.drawPieces(boardData, this.squareSize);
@@ -80,6 +79,6 @@ class Board {
   }
 }
 
-const board = new Board(18, 18, 30);
+const board = new Board();
 
 export default board;

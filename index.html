@@ -15,30 +15,26 @@
     <aside class="form">
       <div class="field-group custom-size">
         <label>Load a snapshot</label>
-        <select id="snapshotList">
+        <select id="snapshot">
           <option>loading...</option>
         </select>
-        <input type="button" value="Apply" id="applySnapshotListButton" />
+        <input type="button" value="Apply" id="applySnapshotButton" />
       </div>
       <div class="field-group custom-size">
         <label>Save a snapshot</label>
         <input type="text" placeholder="snapshot name" id="newSnapshotName" />
-        <input type="button" value="Save" id="addSnapshotButton" />
+        <input type="button" value="Save" id="saveSnapshotButton" />
       </div>
       <div class="field-group">
         <label>Red Player Controller:</label>
-        <select>
-          <option>Human Player</option>
-          <option>Dummy</option>
-          <option>Atempt 01</option>
+        <select id="redPlayer">
+          <option>loading...</option>
         </select>
       </div>
       <div class="field-group">
         <label>Blue Player Controller:</label>
-        <select>
-          <option>Human Player</option>
-          <option>Dummy</option>
-          <option>Atempt 01</option>
+        <select id="bluePlayer">
+          <option>loading...</option>
         </select>
       </div>
       <div class="field-group checkbox">
@@ -57,16 +53,20 @@
           </thead>
           <tbody>
             <tr>
+              <td>Is Game On</td>
+              <td>no</td>
+            </tr>
+            <tr>
               <td>Current Player</td>
-              <td>Red</td>
+              <td></td>
             </tr>
             <tr>
               <td>Round Count</td>
-              <td>0</td>
+              <td></td>
             </tr>
             <tr>
               <td>Is Game Ended</td>
-              <td>No</td>
+              <td></td>
             </tr>
             <tr>
               <td>Who won</td>

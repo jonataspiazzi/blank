@@ -1,6 +1,7 @@
 import HumanPlayer from './../players/humanPlayer';
 import BoardHelper from './BoardHelper';
 import board from './../ui/board';
+import { firstPieceToPlay, gameDataWidth, gameDataHeight } from './gameConfig';
 
 class Game {
   constructor() {
@@ -11,28 +12,49 @@ class Game {
   reset() {
     this.player1 = new HumanPlayer('Jhon');
     this.player2 = new HumanPlayer('Jhoane');
-    this.boardData = BoardHelper.createBoarData(board.dataWidth, board.dataHeight);
+    this.boardData = BoardHelper.createBoarData(gameDataWidth, gameDataHeight);
+  }
+
+  setBoardState(boardData) {
+    this.boardData = boardData;
+
+    const counts = BoardHelper.countPieces(this.boardData);
+
+    if (counts.piece1 === counts.piece2) {
+      this.setCurrentPiece(firstPieceToPlay);
+    }
+    else {
+      this.setCurrentPiece(counts.piece1 > counts.piece2 ? 2 : 1);
+    }
+
+    if (this.enableVisualBoard) {
+      board.render(this.boardData);
+    }
+  }
+
+  setCurrentPiece(piece) {
+    this.currentPiece = piece;
+
+    this.currentPlayer = this.currentPiece === 1
+      ? this.player1
+      : this.player2;
+  }
+
+  toggleCurrentPiece() {
+    this.setCurrentPiece(this.currentPiece === 1 ? 2 : 1);
   }
 
   async start() {
-    let currentPiece = 1;
-    let currentPlayer = this.player1;
+    board.render(this.boardData);
+    this.setCurrentPiece(firstPieceToPlay);
 
     while (!this.isEnded()) {
-      const move = await currentPlayer.makeAMove(this.boardData, currentPiece);
+      const move = await this.currentPlayer.makeAMove(this.boardData, this.currentPiece);
 
-      console.log('piece ', currentPiece);
-      console.log('move ', move);
-      console.log('player', currentPlayer);
+      this.boardData[move.y][move.x] = this.currentPiece;
 
-      if (currentPiece === 1) {
-        currentPiece = 2;
-        currentPlayer = this.player2;
-      }
-      else {
-        currentPiece = 1;
-        currentPlayer = this.player1;
-      }
+      board.render(this.boardData);
+      this.toggleCurrentPiece();
     }
   }
 

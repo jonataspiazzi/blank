@@ -58,6 +58,20 @@ class BoardHelper {
 
     return boardData;
   }
+
+  static countPieces(boardData) {
+    let piece1 = 0;
+    let piece2 = 0;
+
+    for (let y = 0; y < boardData.width; y++) {
+      for (let x = 0; x < boardData[y].width; x++) {
+        if (boardData[y][x] === 1) piece1++;
+        else if (boardData[y][x] === 2) piece2++;
+      }
+    }
+
+    return { piece1, piece2 };
+  }
 }
 
 export default BoardHelper;

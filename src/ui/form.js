@@ -1,73 +1,18 @@
-import BoardHelper from './../core/BoardHelper';
-import SnapshotServer from './../service/snapshotServer';
-import board from './board';
+import Componet from './component';
+import SnapshotComponent from './snapshotComponent';
+import PlayerComponent from './playerConponent';
 
-class Form {
+
+class Form extends Componet {
   constructor() {
-    document.addEventListener('DOMContentLoaded', this.load.bind(this));
-    this.snapshots = {};
+    super();
+    this.snapshot = new SnapshotComponent();
+    this.player = new PlayerComponent();
   }
 
-  async load() {
-    this.loadComponent('snapshotList');
-    this.loadComponent('applySnapshotListButton', this.applySnapshotListOnClick.bind(this));
-    this.loadComponent('newSnapshotName');
-    this.loadComponent('addSnapshotButton', this.addSnapshotOnClick.bind(this));
-
-    await this.loadSnapshotList();
-  }
-
-  loadComponent(name, onClick) {
-    this[name] = document.getElementById(name);
-
-    if (typeof onClick === 'function') {
-      this[name].addEventListener('click', onClick);
-    }
-  }
-
-  async loadSnapshotList() {
-    const server = new SnapshotServer();
-    this.snapshots = await server.getAll();
-    
-    for (let i = 0; i < this.snapshotList.options.length; i++) {
-      this.snapshotList.options[i] = null;
-    }
-
-    let c = 0;
-    for (let name in this.snapshots) {
-      const option = document.createElement('option');
-
-      option.value = name;
-      option.innerHTML = name;
-
-      this.snapshotList.options[c++] = option;
-    }
-  }
-  
-  applySnapshotListOnClick() {
-    const boardData = BoardHelper.createBoarData(board.dataWidth, board.dataHeight);
-    const selectedName = this.snapshotList.options[this.snapshotList.options.selectedIndex].value;
-    const snapshotData = this.snapshots[selectedName];
-
-    BoardHelper.applySnapshot(boardData, snapshotData);
-
-    board.render(boardData);
-  }
-
-  async addSnapshotOnClick() {
-    const server = new SnapshotServer();
-
-    const name = this.newSnapshotName.value;
-    this.newSnapshotName.value = '';
-    const snapshot = BoardHelper.cropSnapshot(board.currentBoardData);
-
-    await server.save(name, snapshot);
-    await this.loadSnapshotList();
-
-    for (let i = 0; i < this.snapshotList.options.length; i++) {
-      this.snapshotList.options[i].selected = 
-        this.snapshotList.options[i].value === name;
-    }
+  load() {
+    this.snapshot.load();
+    this.player.load();
   }
 }
 

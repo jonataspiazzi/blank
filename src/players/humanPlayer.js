@@ -1,10 +1,11 @@
 import Player from './../core/player';
 import board from './../ui/board';
+import { squareSize } from './../core/gameConfig';
 
 class HumanPlayer extends Player {
-  constructor(name) {
+  constructor() {
     super();
-    this.name = name;
+    this.name = 'Human Player';
   }
 
   async makeAMove(boardData, piece) {
@@ -14,8 +15,8 @@ class HumanPlayer extends Player {
       const onClick = (e) => {
         canvas.removeEventListener('click', onClick);
 
-        const x = Math.trunc(e.offsetX / board.squareSize);
-        const y = Math.trunc(e.offsetY / board.squareSize);
+        const x = Math.trunc(e.offsetX / squareSize);
+        const y = Math.trunc(e.offsetY / squareSize);
 
         resolve({ x, y });
       }
