@@ -26,6 +26,18 @@ class PlayerComponent extends Component {
     super.setSelectOption(this.redPlayer, 0);
     super.setSelectOption(this.bluePlayer, 1);
   }
+
+  getRedPlayer() {
+    const key = super.getSelectedKey(this.redPlayer);
+
+    return new playerCollection[key]();
+  }
+
+  getBluePlayer() {
+    const key = super.getSelectedKey(this.bluePlayer);
+
+    return new playerCollection[key]();
+  }
 }
 
 export default PlayerComponent;

@@ -1,4 +1,3 @@
-import HumanPlayer from './../players/humanPlayer';
 import BoardHelper from './BoardHelper';
 import board from './../ui/board';
 import { firstPieceToPlay, gameDataWidth, gameDataHeight } from './gameConfig';
@@ -6,13 +5,19 @@ import { firstPieceToPlay, gameDataWidth, gameDataHeight } from './gameConfig';
 class Game {
   constructor() {
     this.enableVisualBoard = true;
+    this.gameRunning = false;
+    this.player1 = null;
+    this.player2 = null;
     this.reset();
   }
 
   reset() {
-    this.player1 = new HumanPlayer('Jhon');
-    this.player2 = new HumanPlayer('Jhoane');
+    this.gameRunning = false;
     this.boardData = BoardHelper.createBoarData(gameDataWidth, gameDataHeight);
+
+    if (this.enableVisualBoard) {
+      board.render(this.boardData);
+    }
   }
 
   setBoardState(boardData) {
@@ -45,11 +50,14 @@ class Game {
   }
 
   async start() {
+    this.gameRunning = true;
     board.render(this.boardData);
     this.setCurrentPiece(firstPieceToPlay);
 
     while (!this.isEnded()) {
       const move = await this.currentPlayer.makeAMove(this.boardData, this.currentPiece);
+
+      if (!this.gameRunning) return;
 
       this.boardData[move.y][move.x] = this.currentPiece;
 
