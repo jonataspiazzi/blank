@@ -1,6 +1,7 @@
 import BoardHelper from './BoardHelper';
 import board from './../ui/board';
 import { firstPieceToPlay, gameDataWidth, gameDataHeight } from './gameConfig';
+import form from './../ui/form';
 
 class Game {
   constructor() {
@@ -43,6 +44,8 @@ class Game {
     this.currentPlayer = this.currentPiece === 1
       ? this.player1
       : this.player2;
+
+    form.gridInfo.setCurrentPlayer(this.currentPlayer);
   }
 
   toggleCurrentPiece() {
