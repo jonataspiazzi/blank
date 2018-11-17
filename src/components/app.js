@@ -5,7 +5,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      name: 'React'
+      name: 'React, Babel'
     };
 
     this.changeName();
@@ -20,9 +20,11 @@ class App extends Component {
   }
 
   async changeName() {
-    const name = await this.getName();
+    const result = await fetch('http://127.0.0.1:9001/api/about');
+    const data = await result.json();
+
     this.setState({ 
-      name: `${this.state.name} and ${name}`
+      name: `${this.state.name} and ${data.name}`
     });
   }
 

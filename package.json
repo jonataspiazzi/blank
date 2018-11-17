@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run client",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --host 127.0.0.1 --colors --progress --inline --hot --open --env=dev --port 9001",
+    "server": "node src\\server\\api.js",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -29,5 +30,10 @@
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.4"
   }
 }
