@@ -26,3 +26,18 @@ Simple project with:
 - sass
 - webpack
 
+## full stack react + node express
+
+``` cmd
+git checkout react-express
+```
+
+Simple project with:
+
+- react
+- babel
+- sass
+- webpack
+- express
+- body-parser
+
