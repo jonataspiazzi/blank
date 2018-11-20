@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class UserDelailed extends Component {
+class UserDelail extends Component {
   render() {
-    if (!this.props.user) {
-      return (<p>Select a user...</p>);
-    }
     return (
       <div>
         <p>Id: {this.props.user.id}</p>
@@ -18,8 +15,8 @@ class UserDelailed extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userSelected
+    user: state.userActive.user
   }
 };
 
-export default connect(mapStateToProps)(UserDelailed);
+export default connect(mapStateToProps)(UserDelail);

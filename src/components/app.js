@@ -1,19 +1,20 @@
 import React, { Component, Fragment } from "react";
-import UserList from './user-list';
-import UserDelailed from "./user-detailed";
+import UserList from '../containers/user-list';
+import UserWrap from '../containers/user-wrap';
 
 class App extends Component {
   render() {
     return (
+      
       <Fragment>
-        <div>
+        <section>
           <h2>List</h2>
           <UserList />
-        </div>
-        <div>
+        </section>
+        <section>
           <h2>Item Details</h2>
-          <UserDelailed />
-        </div>
+          <UserWrap />
+        </section>
       </Fragment>
     );
   }
