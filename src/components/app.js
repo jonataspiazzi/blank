@@ -1,33 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import UserList from './user-list';
+import UserDelailed from "./user-detailed";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: 'React'
-    };
-
-    this.changeName();
-  }
-
-  async getName() {
-    return await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('Babel');
-      }, 1000);
-    });
-  }
-
-  async changeName() {
-    const name = await this.getName();
-    this.setState({ 
-      name: `${this.state.name} and ${name}`
-    });
-  }
-
   render() {
-    return (<p>Hello From {this.state.name}!</p>);
+    return (
+      <Fragment>
+        <div>
+          <h2>List</h2>
+          <UserList />
+        </div>
+        <div>
+          <h2>Item Details</h2>
+          <UserDelailed />
+        </div>
+      </Fragment>
+    );
   }
 }
 
