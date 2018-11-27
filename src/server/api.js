@@ -27,6 +27,8 @@ app.get('/characters/:id', (req, res) => {
 });
 
 app.post('/characters', (req, res) => {
+  console.log(`server received: POST '/characters' with body: `, req.body);
+
   var item = req.body;
   item.id = data.map(d => d.id).reduce((ac, i) => ac > i ? ac : i, 0) + 1; 
   data.push(item);
@@ -46,6 +48,8 @@ getIndex = (req, res) => {
 };
 
 app.put('/characters/:id', (req, res) => {
+  console.log(`server received: PUT '/characters/${req.params.id}' with body: `, req.body);
+
   var index = getIndex(req, res);
   if (index < 0) return;
 
@@ -58,6 +62,8 @@ app.put('/characters/:id', (req, res) => {
 });
 
 app.delete('/characters/:id', (req, res) => {
+  console.log(`server received: DELETE '/characters/${req.params.id}'`);
+
   var index = getIndex(req, res);
   if (index < 0) return;
 
