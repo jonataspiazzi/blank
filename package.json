@@ -1,6 +1,6 @@
 {
-  "name": "blank.babel",
-  "version": "1.1.0",
+  "name": "link5-web",
+  "version": "1.0.0",
   "description": "",
   "main": "index.html",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "webpack --mode production"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jônatas Piazzi",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -35,6 +35,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "rxjs": "^5.5.8",
     "whatwg-fetch": "^2.0.3"
   }
