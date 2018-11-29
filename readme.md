@@ -15,6 +15,8 @@ Simple project with:
 
 ## react
 
+This project is a extension of https://github.com/crsandeep/simple-react-full-stack
+
 ``` cmd
 git checkout react
 ```
