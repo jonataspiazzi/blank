@@ -23,7 +23,22 @@ class CharacterContainer extends Component {
   }
 
   onAction(action, selected) {
-    this.setState({ action, selected });
+    if (action == 'delete') {
+      this.onDelete(selected);
+    }
+    else {
+      this.setState({ action, selected });
+    }
+  }
+
+  async onDelete(item) {
+    const uri = `http://127.0.0.1:9001/api/characters/${item.id}`;
+    const req = { method: 'DELETE' };
+
+    await fetch(uri, req);
+    await this.loadCharacters();
+
+    this.setState({ action: null, selected: null });
   }
 
   async onSave() {
@@ -40,10 +55,7 @@ class CharacterContainer extends Component {
     await fetch(uri, req);
     await this.loadCharacters();
     
-    this.setState({
-      action: null,
-      selected: null
-    });
+    this.setState({ action: null, selected: null });
   }
 
   render() {
