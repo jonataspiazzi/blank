@@ -1,48 +1,50 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const Dotenv = require('dotenv-webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = (env, argv) => {
-  const config = {
-    //entry: ['babel-polyfill'],
-    devtool: 'source-map',
-    devServer: {
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3000',
-          pathRewrite: {'^/api' : ''}
+const outputDirectory = 'dist';
+
+module.exports = {
+  entry: ['babel-polyfill', './src/client/index.js'],
+  output: {
+    path: path.join(__dirname, outputDirectory),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: "html-loader"
+        }
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
-        },
-        {
-          test:/\.scss$/,
-          use:['style-loader', 'css-loader', 'sass-loader']
-        }
-      ]
-    },
-    plugins: [
-      new Dotenv({
-        path: './.env'
-      })
     ]
-  };
-
-  if (argv.mode == "development") {
-    config.plugins = [
-      ...config.plugins,
-      new HtmlWebPackPlugin({
-        template: 'index.html'
-      })
-    ];
-  }
-
-  return config;
+  },
+  devServer: {
+    proxy: {
+      '/api': 'http://localhost:3001'
+    }
+  },
+  plugins: [
+    new CleanWebpackPlugin([outputDirectory]),
+    new HtmlWebpackPlugin({
+      template: './src/client/index.html',
+      favicon: './src/client/favicon.ico'
+    })
+  ]
 };

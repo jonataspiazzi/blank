@@ -1,28 +1,30 @@
-# LINK 5
+# This project contains a few 'fast start' projects
 
-A simple project created to test artificial inteligences in a LINK 5 game.
+Each branch has a project with a clean start point in a different tecnology
 
-`This project was build using JavaScript in EcmaScript 6 version and WebPack, if you're new in one of these you maybe wanna check these things out first or you can follow the instructions below to run`
+## babel
 
-## Executing
-
-- You'll need [Node.JS](https://nodejs.org/en/) installed with `npm` to run this project.
-- You'll need [git](https://git-scm.com/) installed to fast-download this project, if you didn't already.
-
-To download run:
-
+``` cmd
+git checkout babel
 ```
-git clone https://jonataspiazzi@bitbucket.org/jonataspiazzi/link5-web.git
+Simple project with:
+
+- babel
+- sass
+- webpack
+
+## react
+
+This project is a extension of https://github.com/crsandeep/simple-react-full-stack
+
+``` cmd
+git checkout react
 ```
 
-After downloading, inside link5-web run the command below to install all dependencies.
+Simple project with:
 
-```
-npm install
-```
+- react
+- babel
+- sass
+- webpack
 
-When the dependencies finished to install run the command below to start the aplication as a local web server.
-
-```
-npm start
-```
