@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-import CharacterContainer from '../containers/character';
+import React, { Component, Fragment } from 'react';
+import Board from './board';
+import Form from './form';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <section>
-        <CharacterContainer />
-      </section>
+      <Fragment>
+        <Board />
+        <Form />
+      </Fragment>
     );
   }
 }
