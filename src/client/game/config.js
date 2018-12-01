@@ -1,5 +1,5 @@
-import DummyPlayer from '../ai/dummyPlayer';
-import HumanPlayer from '../ai/humanPlayer';
+import DummyPlayer from '../aiPlayers/dummyPlayer';
+import HumanPlayer from '../aiPlayers/humanPlayer';
 
 export const gameDataWidth = 18;
 export const gameDataHeight = 18;

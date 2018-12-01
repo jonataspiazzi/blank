@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --host 127.0.0.1 --colors --progress --inline --hot --open --env=dev --port 9001",
-    "server": "nodemon src/server/index.js",
+    "server": "nodemon src/server/snapshotController.js",
     "build": "webpack --mode production",
     "start-prd": "npm run build && node src/server/index.js"
   },
