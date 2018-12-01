@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class GameInfo extends Component {
+export default class GameInfo extends Component {
   render() {
     return (
       <div className="field-group">
@@ -37,5 +37,3 @@ class GameInfo extends Component {
     );
   }
 }
-
-export default GameInfo;

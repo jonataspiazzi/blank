@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Board from './board';
 import Form from './form';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <Fragment>
@@ -12,5 +12,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

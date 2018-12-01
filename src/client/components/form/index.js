@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import LoadSnapshot from './load-snapshot';
-import SaveSnapshot from './save-snapshot';
-import PlayerSelector from './player-selector';
+import LoadSnapshot from './loadSnapshot';
+import SaveSnapshot from './saveSnapshot';
+import PlayerSelector from './playerSelector';
 import Visibility from './visibility';
-import ResetRun from './reset-run';
+import ResetRun from './resetRun';
 import GameInfo from './gameInfo';
 
-class Form extends Component {
+export default class Form extends Component {
   render() {
     return (
       <aside className="form">
@@ -21,5 +21,3 @@ class Form extends Component {
     );
   }
 }
-
-export default Form;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ResetRun extends Component {
+export default class ResetRun extends Component {
   render() {
     return (
       <div className="field-group">
@@ -9,5 +9,3 @@ class ResetRun extends Component {
     );
   }
 }
-
-export default ResetRun;

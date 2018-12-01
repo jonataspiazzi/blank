@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Visibility extends Component {
+export default class Visibility extends Component {
   render() {
     return (
       <div className="field-group checkbox">
@@ -10,5 +10,3 @@ class Visibility extends Component {
     );
   }
 }
-
-export default Visibility;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class LoadSnapshot extends Component {
+export default class LoadSnapshot extends Component {
   render() {
     return (
       <div className="field-group">
@@ -15,5 +15,3 @@ class LoadSnapshot extends Component {
     );
   }
 }
-
-export default LoadSnapshot;
