@@ -5,11 +5,14 @@ const gameStateVMEvent = new EventEmitter();
 
 class GameStateVM {
   constructor() {
-    this.snapshotList = [];
-    this.selectedSnapshot = null;
-    this.playerList = [...playerCollection];
-    this.player1 = null;
-    this.player2 = null;
+    this.snapshotList = [{ name: 'loading...', boardData: [] }];
+    this.selectedSnapshot = this.snapshotList[0];
+    this.playerList = [{ name: 'loading...', constructor: null }];
+    this.player1 = this.playerList[0];
+    this.player2 = this.playerList[0];
+
+    this.loadSnapshotList();
+    this.loadPlayerList();
   }
 
   addChangedListener(callback) {
@@ -21,7 +24,31 @@ class GameStateVM {
   }
 
   async loadSnapshotList() {
-    
+    const result = await fetch('http://127.0.0.1:9001/api/snapshots');
+    const data = await result.json();
+    const snapshots = [];
+
+    for (var name in data) {
+      snapshots.push({
+        name: name,
+        boardData: data[name]
+      });
+    }
+
+    this.setSnapshotList(snapshots);
+  }
+
+  loadPlayerList() {
+    const players = [];
+
+    for (const item of playerCollection) {
+      players.push({
+        name: item.name,
+        constructor: item
+      });
+    }
+
+    this.setPlayerList(players);
   }
 
   setSnapshotList(snapshotList) {
@@ -39,17 +66,11 @@ class GameStateVM {
     gameStateVMEvent.emit('changed', this, 'playerList');
   }
 
-  setPlayer1(player) {
-    this.player1 = player;
-    gameStateVMEvent.emit('changed', this, 'player1');
-  }
-
-  setPlayer2(player) {
-    this.player2 = player;
-    gameStateVMEvent.emit('changed', this, 'player2');
+  setPlayer(playerNumber, player) {
+    const playerName = `player${playerNumber}`;
+    this[`player${playerNumber}`] = player;
+    gameStateVMEvent.emit('changed', this, playerName);
   }
 }
 
-const gameStateVM = new GameStateVM();
-
-export const gameStateVM;
+export const gameStateVM = new GameStateVM();

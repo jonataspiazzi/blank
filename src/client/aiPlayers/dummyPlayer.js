@@ -1,11 +1,6 @@
 import Player from './player';
 
 export default class DummyPlayer extends Player {
-  constructor() {
-    super();
-    this.name = 'Dummy AI';
-  }
-
   makeAMove(boardData, piece) {
     return new Promise((resolve, reject) => {
       for (let y = 0; y < boardData.length; y++) {

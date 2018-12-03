@@ -1,6 +1,6 @@
 export default class Player {
   constructor() {
-    this.name = 'player';
+    this.name = this.constructor.name;
   }
 
   async makeAMove(boardData, piece) {

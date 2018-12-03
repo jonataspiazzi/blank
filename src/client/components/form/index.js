@@ -23,8 +23,6 @@ export default class Form extends Component {
   }
 
   onGameStateChanged(newGameState, propChanged) {
-    console.log(newGameState, propChanged);
-    
     this.setState({
       snapshotList: newGameState.snapshotList,
       selectedSnapshot: newGameState.selectedSnapshot,
@@ -37,10 +35,21 @@ export default class Form extends Component {
   render() {
     return (
       <aside className="form">
-        <LoadSnapshot />
+        <LoadSnapshot snapshotList={this.state.snapshotList} selectedSnapshot={this.state.selectedSnapshot} />
         <SaveSnapshot />
-        <PlayerSelector colour="Red" />
-        <PlayerSelector colour="Blue" />
+        
+        <PlayerSelector
+          colour="Red"
+          playerNumber={1}
+          selectedPlayer={this.state.player1}
+          playerList={this.state.playerList} />
+
+        <PlayerSelector
+          colour="Blue"
+          playerNumber={2}
+          selectedPlayer={this.state.player2}
+          playerList={this.state.playerList} />
+
         <Visibility />
         <ResetRun />
         <GameInfo />

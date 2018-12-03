@@ -2,11 +2,6 @@ import Player from './player';
 import { squareSize } from '../game/config';
 
 export default class HumanPlayer extends Player {
-  constructor() {
-    super();
-    this.name = 'Human Player';
-  }
-
   async makeAMove(boardData, piece) {
     const canvas = document.getElementById('board');
     
