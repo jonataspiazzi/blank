@@ -12,6 +12,10 @@ class LoadSnapshot extends Component {
     gameStateVM.setSelectedSnapshot(item);
   }
 
+  onApply() {
+    gameStateVM.applySelectedSnapshot();
+  }
+
   render() {
     return (
       <div className="field-group">
@@ -28,7 +32,7 @@ class LoadSnapshot extends Component {
                 {ss.name}
               </option>)}
           </select>
-          <input type="button" value="Apply"  />
+          <input type="button" value="Apply" onClick={this.onApply.bind(this)} />
         </div>
       </div>
     );

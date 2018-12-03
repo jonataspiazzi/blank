@@ -1,5 +1,6 @@
-import { playerCollection } from './config';
 import { EventEmitter } from 'events';
+import { playerCollection } from './config';
+import { boardDataVM } from './boardDataVM';
 
 const gameStateVMEvent = new EventEmitter();
 
@@ -10,6 +11,8 @@ class GameStateVM {
     this.playerList = [{ name: 'loading...', constructor: null }];
     this.player1 = this.playerList[0];
     this.player2 = this.playerList[0];
+
+    this.enableGameRender = true;
 
     this.loadSnapshotList();
     this.loadPlayerList();
@@ -36,6 +39,7 @@ class GameStateVM {
     }
 
     this.setSnapshotList(snapshots);
+    this.setSelectedSnapshot(snapshots[0]);
   }
 
   loadPlayerList() {
@@ -49,6 +53,8 @@ class GameStateVM {
     }
 
     this.setPlayerList(players);
+    this.setPlayer(1, players[0]);
+    this.setPlayer(2, players[0]);
   }
 
   setSnapshotList(snapshotList) {
@@ -59,6 +65,10 @@ class GameStateVM {
   setSelectedSnapshot(snapshot) {
     this.selectedSnapshot = snapshot;
     gameStateVMEvent.emit('changed', this, 'selectedSnapshot');
+  }
+
+  applySelectedSnapshot() {
+    boardDataVM.applySnapshot(this.selectedSnapshot.boardData);
   }
 
   setPlayerList(playerList) {
