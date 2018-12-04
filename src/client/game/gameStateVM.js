@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import { playerCollection } from './config';
 import { boardDataVM } from './boardDataVM';
+import SnapshotService from '../service/snapshotService';
 
 const gameStateVMEvent = new EventEmitter();
 
@@ -8,10 +9,10 @@ class GameStateVM {
   constructor() {
     this.snapshotList = [{ name: 'loading...', boardData: [] }];
     this.selectedSnapshot = this.snapshotList[0];
+    this.snapshotName = '';
     this.playerList = [{ name: 'loading...', constructor: null }];
     this.player1 = this.playerList[0];
     this.player2 = this.playerList[0];
-
     this.enableGameRender = true;
 
     this.loadSnapshotList();
@@ -27,16 +28,7 @@ class GameStateVM {
   }
 
   async loadSnapshotList() {
-    const result = await fetch('http://127.0.0.1:9001/api/snapshots');
-    const data = await result.json();
-    const snapshots = [];
-
-    for (var name in data) {
-      snapshots.push({
-        name: name,
-        boardData: data[name]
-      });
-    }
+    const snapshots = await new SnapshotService().getAll();
 
     this.setSnapshotList(snapshots);
     this.setSelectedSnapshot(snapshots[0]);
@@ -71,6 +63,23 @@ class GameStateVM {
     boardDataVM.applySnapshot(this.selectedSnapshot.boardData);
   }
 
+  setSnapshotName(name) {
+    this.snapshotName = name;
+    gameStateVMEvent.emit('changed', this, 'snapshotName');
+  }
+
+  async saveSnapshot() {
+    const service = new SnapshotService();
+    const boardData = boardDataVM.cropSnapshot();
+    const name = this.snapshotName;
+
+    await service.save(name, boardData);
+    await this.loadSnapshotList();
+
+    const item = this.snapshotList.filter(s => s.name == name)[0];
+    this.setSelectedSnapshot(item);
+  }
+
   setPlayerList(playerList) {
     this.playerList = playerList;
     gameStateVMEvent.emit('changed', this, 'playerList');
@@ -80,6 +89,11 @@ class GameStateVM {
     const playerName = `player${playerNumber}`;
     this[`player${playerNumber}`] = player;
     gameStateVMEvent.emit('changed', this, playerName);
+  }
+
+  setEnableGameRender(state) {
+    this.enableGameRender = state;
+    gameStateVMEvent.emit('changed', this, 'enableGameRender');
   }
 }
 

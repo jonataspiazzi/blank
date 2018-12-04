@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoadSnapshot from './loadSnapshot';
 import SaveSnapshot from './saveSnapshot';
 import PlayerSelector from './playerSelector';
-import Visibility from './visibility';
+import EnableGameRender from './enableGameRender';
 import ResetRun from './resetRun';
 import GameInfo from './gameInfo';
 import { gameStateVM } from '../../game/gameStateVM';
@@ -16,9 +16,11 @@ export default class Form extends Component {
     this.state = {
       snapshotList: gameStateVM.snapshotList,
       selectedSnapshot: gameStateVM.selectedSnapshot,
+      snapshotName: gameStateVM.snapshotName,
       playerList: gameStateVM.playerList,
       player1: gameStateVM.player1,
-      player2: gameStateVM.player2
+      player2: gameStateVM.player2,
+      enableGameRender: gameStateVM.enableGameRender
     };
   }
 
@@ -26,17 +28,23 @@ export default class Form extends Component {
     this.setState({
       snapshotList: newGameState.snapshotList,
       selectedSnapshot: newGameState.selectedSnapshot,
+      snapshotName: newGameState.snapshotName,
       playerList: newGameState.playerList,
       player1: newGameState.player1,
-      player2: newGameState.player2
+      player2: newGameState.player2,
+      enableGameRender: newGameState.enableGameRender
     });
   }
 
   render() {
     return (
       <aside className="form">
-        <LoadSnapshot snapshotList={this.state.snapshotList} selectedSnapshot={this.state.selectedSnapshot} />
-        <SaveSnapshot />
+        <LoadSnapshot
+          snapshotList={this.state.snapshotList}
+          selectedSnapshot={this.state.selectedSnapshot} />
+
+        <SaveSnapshot
+          name={this.state.snapshotName} />
         
         <PlayerSelector
           colour="Red"
@@ -50,7 +58,9 @@ export default class Form extends Component {
           selectedPlayer={this.state.player2}
           playerList={this.state.playerList} />
 
-        <Visibility />
+        <EnableGameRender
+          value={this.state.enableGameRender} />
+
         <ResetRun />
         <GameInfo />
       </aside>
